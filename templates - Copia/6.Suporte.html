@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte - Body Health</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Cores para o tema escuro */
+            --dark-bg: #1a1a1a; /* Fundo principal muito escuro */
+            --dark-card-bg: #2b2b2b; /* Fundo dos cards e formulários */
+            --dark-text-color: #e0e0e0; /* Cor de texto padrão clara (quase branca) */
+            --dark-muted-text: #b0b0b0; /* Texto muted mais claro */
+            --dark-border-color: #444444; /* Bordas mais escuras */
+            --dark-shadow-color: rgba(0,0,0,0.5); /* Sombra mais intensa */
+            --highlight-yellow: #ffc107; /* Amarelo de destaque */
+            --highlight-green: #28a745; /* Verde para checks */
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--dark-text-color);
+            padding-top: 70px; /* Espaço para a navbar fixa */
+        }
+        .navbar {
+            background-color: #212529 !important;
+            box-shadow: 0 2px 4px var(--dark-shadow-color);
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: var(--dark-text-color) !important;
+        }
+        .navbar-nav .nav-link.active {
+             color: var(--highlight-yellow) !important;
+        }
+
+        h1, h2, h3, h5 {
+            color: var(--dark-text-color);
+        }
+        .text-primary {
+            color: white !important;
+        }
+
+        .support-card {
+            background-color: var(--dark-card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 0 15px var(--dark-shadow-color);
+            margin-bottom: 30px;
+        }
+        .support-card p, .support-card ul li {
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .support-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .support-card ul li {
+            margin-bottom: 10px;
+        }
+        .support-card ul li i {
+            margin-right: 10px;
+            color: var(--highlight-yellow);
+        }
+
+        /* Estilo para o formulário de contato */
+        .form-label {
+            color: var(--dark-text-color);
+            font-weight: bold;
+        }
+        .form-control, .form-control:focus {
+            background-color: #3b3b3b;
+            color: var(--dark-text-color);
+            border: 1px solid var(--dark-border-color);
+        }
+        .form-control::placeholder {
+            color: var(--dark-muted-text);
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255,193,7,0.25); /* Sombra amarela no foco */
+            border-color: var(--highlight-yellow);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Estilo para a seção de FAQ (Acordeão básico sem JS) */
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--dark-border-color);
+            border-radius: 8px;
+            overflow: hidden; /* Garante que o overflow seja tratado */
+        }
+        .faq-question {
+            background-color: var(--dark-card-bg);
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--dark-text-color);
+            display: block; /* Para o ícone de seta funcionar com :before */
+            position: relative;
+            user-select: none;
+        }
+        .faq-question:hover {
+            background-color: #3b3b3b;
+        }
+        .faq-answer {
+            background-color: #323232; /* Um pouco mais claro que o card */
+            padding: 0 20px;
+            max-height: 0; /* Escondido por padrão */
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* Animação suave */
+            color: var(--dark-muted-text);
+        }
+        /* Para mostrar a resposta quando o checkbox invisível é marcado */
+        .faq-checkbox {
+            display: none; /* Esconde o checkbox */
+        }
+        .faq-checkbox:checked + .faq-question + .faq-answer {
+            max-height: 200px; /* Altura máxima para mostrar o conteúdo (ajuste conforme necessário) */
+            padding: 15px 20px;
+        }
+        /* Estilo para a seta indicadora */
+        .faq-question::before {
+            content: '\f282'; /* Código do ícone chevron-down do Bootstrap Icons */
+            font-family: 'bootstrap-icons';
+            float: right;
+            transition: transform 0.3s ease;
+        }
+        .faq-checkbox:checked + .faq-question::before {
+            content: '\f286'; /* Código do ícone chevron-up */
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="inicial.html"><img src="img/login.png" alt="" height="50px"> Body Health</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" aria-current="page" href="1.DashboardInicial.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white active" aria-current="page" href="6.Suporte.html">Suporte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="4.Planos.html">Planos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="5.SobreNos.html">Sobre Nós</a>
+                    </li>
+                    <li>
+                        <li class="nav-item ms-lg-3"> <a href="2.Login.html" class="btn btn-outline-light">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-5 fw-bold text-primary">Central de Ajuda e Suporte</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="support-card text-center">
+                    <h2 class="mb-4">Como Podemos Ajudar?</h2>
+                    <p>Nossa equipe de suporte está pronta para auxiliá-lo. Escolha a melhor forma de entrar em contato conosco ou consulte nossa seção de Perguntas Frequentes.</p>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <i class="bi bi-envelope-fill icon-large"></i>
+                            <h5 class="mt-2">E-mail</h5>
+                            <p><a href="mailto:suporte@bodyhealth.com" class="text-decoration-none text-white">suporte@bodyhealth.com</a></p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <i class="bi bi-whatsapp icon-large"></i>
+                            <h5 class="mt-2">WhatsApp</h5>
+                            <p><a href="https://wa.me/5528992566961" class="text-decoration-none text-white" target="_blank">(28) 99256-6961</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="support-card">
+                    <h2 class="text-center mb-4">Envie sua Mensagem</h2>
+                    <form>
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Seu Nome</label>
+                            <input type="text" class="form-control" id="nome" placeholder="Seu nome completo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Seu E-mail</label>
+                            <input type="email" class="form-control" id="email" placeholder="nome@exemplo.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="assunto" class="form-label">Assunto</label>
+                            <input type="text" class="form-control" id="assunto" placeholder="Dúvida sobre plano, problema técnico, etc." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mensagem" class="form-label">Sua Mensagem</label>
+                            <textarea class="form-control" id="mensagem" rows="5" placeholder="Descreva sua questão ou problema" required></textarea>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Enviar Mensagem</button>
+                        </div>
+                    </form>
+                    <p class="mt-3 text-muted text-center" style="font-size: 0.9rem;">
+                        * Este formulário é apenas para demonstração. Não envia dados reais.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="support-card">
+                    <h2 class="text-center mb-4">Perguntas Frequentes (FAQ)</h2>
+
+                    <div class="faq-item">
+                        <input type="checkbox" id="faq1" class="faq-checkbox">
+                        <label for="faq1" class="faq-question">Como faço para me cadastrar na Body Health?</label>
+                        <div class="faq-answer">
+                            <p>Você pode se cadastrar diretamente pelo nosso aplicativo ou site. Clique em "Registrar" e siga os passos para criar sua conta gratuita. Após o cadastro, você terá a opção de assinar um de nossos planos premium para ter acesso a recursos adicionais.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <input type="checkbox" id="faq2" class="faq-checkbox">
+                        <label for="faq2" class="faq-question">Quais são os benefícios do Plano Premium?</label>
+                        <div class="faq-answer">
+                            <p>O Plano Premium oferece treinos personalizados ilimitados, acompanhamento nutricional completo, análise de progresso avançada, suporte prioritário, biblioteca exclusiva de artigos e receitas, e muito mais. Ele é projetado para maximizar seus resultados e sua experiência.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <input type="checkbox" id="faq3" class="faq-checkbox">
+                        <label for="faq3" class="faq-question">Posso cancelar minha assinatura a qualquer momento?</label>
+                        <div class="faq-answer">
+                            <p>Sim, assinaturas mensais podem ser canceladas a qualquer momento diretamente nas configurações da sua conta. Assinaturas anuais são faturadas uma vez por ano, e a renovação automática pode ser desativada a qualquer momento.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <input type="checkbox" id="faq4" class="faq-checkbox">
+                        <label for="faq4" class="faq-question">A Body Health se integra com outros dispositivos?</label>
+                        <div class="faq-answer">
+                            <p>Sim, o Plano Premium permite a integração com os principais smartwatches e dispositivos de monitoramento de fitness para que você possa sincronizar seus dados de treino e saúde automaticamente.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </body>
+</html>

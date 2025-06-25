@@ -7,5 +7,4 @@ from data.models.usuario_model import Usuario
 class Profissional(Usuario):
     tipo_profissional: str
     status: str
-    master: bool
 
