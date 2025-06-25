@@ -1,7 +1,3 @@
-criar
-inserir
-alterar
-alterar_senha
-excluir
-obter_por_id
-obter_todos
+fastapi[standard]
+uvicorn[standard]
+jinja2
