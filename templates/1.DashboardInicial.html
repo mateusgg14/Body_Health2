@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Body Health</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="" href="">
+    <style>
+        :root {
+            /* Cores para o tema escuro - Consistente com as outras páginas */
+            --dark-bg: #1a1a1a; /* Fundo principal muito escuro */
+            --dark-card-bg: #2b2b2b; /* Fundo dos cards */
+            --dark-text-color: #e0e0e0; /* Cor de texto padrão clara (quase branca) */
+            --dark-muted-text: #b0b0b0; /* Texto muted mais claro */
+            --dark-border-color: #444444; /* Bordas mais escuras */
+            --dark-shadow-color: rgba(0,0,0,0.5); /* Sombra mais intensa */
+            --highlight-yellow: #ffc107; /* Amarelo de destaque */
+            --highlight-green: #28a745; /* Verde para checks */
+            --highlight-red: #dc3545; /* Vermelho para X */
+
+            /* Cores para o banner claro (se quiser manter um elemento claro) */
+            --light-banner-bg-start: #ffffff;
+            --light-banner-bg-end: #eaeaea;
+            --light-banner-text: #000000;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--dark-text-color);
+            font-family: Arial, sans-serif;
+            padding-top: 70px; /* Espaço para a navbar fixa */
+        }
+        .navbar {
+            background-color: #212529 !important; /* Cor da navbar consistente */
+            box-shadow: 0 2px 4px var(--dark-shadow-color);
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: var(--dark-text-color) !important;
+        }
+        .navbar-nav .nav-link.active {
+             color: var(--highlight-yellow) !important;
+        }
+        .btn-outline-light {
+            color: var(--dark-text-color);
+            border-color: var(--dark-text-color);
+        }
+        .btn-outline-light:hover {
+            background-color: var(--dark-text-color);
+            color: var(--dark-bg);
+        }
+
+        .headline {
+            text-align: center;
+            font-size: 2.5rem; /* Ajustado para um pouco maior */
+            font-weight: bold;
+            margin-top: 3rem;
+            margin-bottom: 3rem; /* Adicionado margem inferior */
+        }
+        .headline span {
+            color: var(--highlight-yellow); /* Usa a variável para o amarelo */
+        }
+
+        .banner {
+            display: flex;
+            flex-wrap: wrap;
+            background: linear-gradient(to right, var(--light-banner-bg-start), var(--light-banner-bg-end));
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--dark-shadow-color);
+            margin: 2rem auto;
+            max-width: 1200px;
+            padding: 2rem;
+            color: var(--light-banner-text); /* Texto do banner em preto */
+            align-items: center; /* Alinha verticalmente no centro */
+        }
+        .banner-text {
+            flex: 1 1 400px;
+            padding: 1rem;
+        }
+        .banner-image {
+            flex: 1 1 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .banner-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .carousel img {
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px; /* Adiciona borda arredondada ao carrossel */
+        }
+
+        .plans-section { /* Renomeado de .planos para evitar conflito e clareza */
+            background-color: var(--dark-card-bg); /* Fundo escuro para a seção de planos */
+            color: var(--dark-text-color);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 3rem auto;
+            max-width: 1200px;
+            box-shadow: 0 0 15px var(--dark-shadow-color);
+        }
+        .plans-section h2 { /* Título da seção de planos */
+            color: white; /* Cor do título principal da seção de planos */
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .plan-card { /* Renomeado de .plano para .plan-card para clareza */
+            background-color: #3b3b3b; /* Fundo dos cards de plano */
+            color: var(--dark-text-color);
+            border-radius: 15px;
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Empurra o botão para baixo */
+            min-width: 280px; /* Garante que não fiquem muito estreitos */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 1px solid var(--dark-border-color); /* Borda sutil */
+        }
+        .plan-card h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .plan-card p {
+            margin-bottom: 1rem;
+        }
+        .plan-card s {
+            color: var(--dark-muted-text);
+        }
+        .plan-card strong {
+            color: var(--highlight-yellow);
+            font-size: 1.2rem;
+        }
+
+        .plan-card-highlight { /* Renomeado de .plano-destaque */
+            background-color: #4f4f4f; /* Um pouco mais escuro para destaque */
+            border-color: var(--highlight-yellow); /* Borda amarela */
+            position: relative;
+            box-shadow: 0 0 20px rgba(255,193,7,0.4); /* Sombra mais forte */
+        }
+        .plan-card-highlight::before {
+            content: "💡 O mais vantajoso";
+            position: absolute;
+            top: -15px; /* Ajustado um pouco para cima */
+            left: 50%; /* Centraliza */
+            transform: translateX(-50%); /* Centraliza */
+            background-color: var(--highlight-yellow);
+            color: #212529; /* Texto escuro no badge */
+            padding: 5px 15px; /* Ajustado padding */
+            border-radius: 20px; /* Mais arredondado */
+            font-weight: bold;
+            font-size: 0.9rem;
+            white-space: nowrap; /* Evita quebra de linha */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .plan-card button {
+            background-color: var(--highlight-yellow);
+            color: #212529; /* Texto preto no botão */
+            padding: 12px 25px; /* Ajustado padding */
+            border: none;
+            border-radius: 8px; /* Menos arredondado */
+            font-weight: bold;
+            margin-top: auto; /* Empurra o botão para o final do card */
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        .plan-card button:hover {
+            background-color: #e6b000;
+        }
+        .plan-card ul {
+            margin-top: 15px;
+            padding-left: 0; /* Remove padding padrão da lista */
+            list-style: none; /* Remove bullet points */
+        }
+        .plan-card ul li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            color: var(--dark-text-color);
+        }
+        .plan-card ul li i { /* Para os ícones de check/x */
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        /* Cores dos checks e X's */
+        .plan-card ul li .bi-check-circle-fill {
+            color: var(--highlight-green);
+        }
+        .plan-card ul li .bi-x-circle-fill {
+            color: var(--highlight-red);
+        }
+        .plan-card ul li.disabled-feature { /* Para os itens desabilitados no plano gratuito */
+            color: var(--dark-muted-text);
+            text-decoration: line-through;
+        }
+        .plan-card ul li.disabled-feature .bi-x-circle-fill {
+            color: var(--highlight-red); /* Garante que o X continue vermelho */
+        }
+        .plan-card .price-info { /* Classe para o preço principal */
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="inicial.html">
+                <img src="img/login.png" height="50px" alt="Body Health Logo"> Body Health
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="inicial.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="6.Suporte.html">Suporte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="4.Planos.html">Planos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="5.SobreNos.html">Sobre Nós</a>
+                    </li>
+                    <li class="nav-item ms-lg-3"> <a href="2.Login.html" class="btn btn-outline-light">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/qiZtFsNEjacT.png" class="d-block w-100" alt="Imagem 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/wgGO3n56mJld.png" class="d-block w-100" alt="Imagem 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/RfMh6PMcZtcv.png" class="d-block w-100" alt="Imagem 3">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="headline">O Corpo dos seus sonhos em <span>suas mãos</span></div>
+
+    <section class="banner">
+        <div class="banner-text">
+            <h4 class="mt-4">Body Health: Seu parceiro na jornada fitness!</h4>
+            <ul>
+                <li><i class="bi bi-play-circle-fill"></i> Vídeos demonstrativos para cada exercício</li>
+                <li><i class="bi bi-graph-up"></i> Acompanhe sua evolução e cargas em tempo real</li>
+                <li><i class="bi bi-clipboard-check"></i> Tenha acesso a dezenas de treinos, mesmo sem assinatura</li>
+                <li><i class="bi bi-arrow-repeat"></i> Contrate planos ou faça upgrade com facilidade</li>
+                <li><i class="bi bi-globe"></i> Tudo isso online, no seu tempo – e com opções gratuitas!</li>
+            </ul>
+            <p class="fw-bold mt-3">Tudo isso de graça!</p>
+            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" height="40"></a>
+            </div>
+        <div class="banner-image">
+            <img src="img/smart_fit_app-BR.png" alt="App Body Health">
+        </div>
+    </section>
+
+    <div class="plans-section">
+        <h2 class="text-center">Escolha o plano ideal para você</h2>
+        <div class="d-flex flex-wrap justify-content-center gap-4 mt-4">
+            <div class="plan-card plan-card-highlight">
+                <div>
+                    <h3>Plano Anual</h3>
+                    <p class="price-info"><s>R$ 239,88</s><br><strong>por R$179,90 / ano</strong></p>
+                </div>
+                <ul>
+                    <li><i class="bi bi-check-circle-fill"></i> Criar Conta</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Calcular IMC</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Planilha de Treino Básica</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Salvar Dados</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Ler Artigos</li>
+                    <li><i class="bi bi-x-circle-fill"></i> Sem Anúncios</li> <li><i class="bi bi-check-circle-fill"></i> Treinos Personalizados Ilimitados</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Acompanhamento Nutricional</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Avaliar Profissionais</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Salvar Medidas e Peso</li>
+                </ul>
+                <a href="4.Planos.html" class="d-block mt-3 text-center text-decoration-none">
+                    <button>Assinar Agora</button>
+                </a>
+            </div>
+
+            <div class="plan-card">
+                <div>
+                    <h3>Plano Mensal</h3>
+                    <p class="price-info"><strong>A partir de R$ 19,90/mês</strong></p>
+                </div>
+                <ul>
+                    <li><i class="bi bi-check-circle-fill"></i> Criar Conta</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Calcular IMC</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Planilha de Treino Básica</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Salvar Dados</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Ler Artigos</li>
+                    <li><i class="bi bi-x-circle-fill"></i> Sem Anúncios</li> <li><i class="bi bi-check-circle-fill"></i> Treinos Personalizados Limitados</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Acompanhamento Nutricional Básico</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Avaliar Profissionais</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Salvar Medidas e Peso</li>
+                </ul>
+                <a href="4.Planos.html" class="d-block mt-3 text-center text-decoration-none">
+                     <button>Assinar Agora</button>
+                </a>
+            </div>
+
+            <div class="plan-card">
+                <div>
+                    <h3>Plano Gratuito</h3>
+                    <p class="price-info"><strong>R$ 0,00</strong></p>
+                </div>
+                <ul>
+                    <li><i class="bi bi-check-circle-fill"></i> Criar Conta</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Calcular IMC</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Planilha de Treino Básica</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Salvar Dados Limitado</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Ler Artigos Selecionados</li>
+                    <li class="disabled-feature"><i class="bi bi-x-circle-fill"></i> Com Anúncios</li> <li class="disabled-feature"><i class="bi bi-x-circle-fill"></i> Treinos Personalizados</li>
+                    <li class="disabled-feature"><i class="bi bi-x-circle-fill"></i> Acompanhamento Nutricional</li>
+                    <li class="disabled-feature"><i class="bi bi-x-circle-fill"></i> Avaliar Profissionais</li>
+                    <li class="disabled-feature"><i class="bi bi-x-circle-fill"></i> Salvar Medidas e Peso</li>
+                </ul>
+                <a href="4.Planos.html" class="d-block mt-3 text-center text-decoration-none">
+                    <button>Começar Agora</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
