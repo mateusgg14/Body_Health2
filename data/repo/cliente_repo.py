@@ -5,11 +5,16 @@ from data.sql.cliente_sql import *
 from data.models.usuario_model import Usuario
 from data.util import get_connection
 
-def criar_tabela() -> bool:
-    with get_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute(CRIAR_TABELA)
-        return cursor.rowcount >= 0
+
+def criar_tabela_cliente() -> bool:
+    try:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(CRIAR_TABELA)
+            return True
+    except Exception as e:
+        print(f"Erro ao criar tabela: {e}")
+        return False
 
 def inserir(cliente: Cliente) -> Optional[int]:
     with get_connection() as conn:
@@ -55,7 +60,7 @@ def excluir(id: int) -> bool:
         conn.commit()
         return cursor.rowcount > 0
 
-def obter_por_id(id: int) -> Optional[Cliente]:
+def obter_por_id_cliente(id: int) -> Optional[Cliente]:
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(OBTER_POR_ID, (id,))

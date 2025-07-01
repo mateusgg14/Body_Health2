@@ -16,7 +16,7 @@ def criar_tabela_administrador() -> bool:
         print(f"Erro ao criar tabela: {e}")
         return False
 
-def inserir(administrador: Administrador) -> Optional[int]:
+def inserir_administrador(administrador: Administrador) -> Optional[int]:
      with get_connection() as conn:
         cursor = conn.cursor()
         usuario = Usuario(0,

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, time
 import pytest
 import os
 import sys
@@ -76,3 +76,4 @@ def administrador_exemplo() -> Administrador:
         user_type="cliente",
         master= True
     )
+
